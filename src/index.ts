@@ -1,0 +1,67 @@
+import React from 'react';
+import {Composition, registerRoot} from 'remotion';
+import {Main, MainProps, TOTAL} from './Main';
+import {Daily, DailyProps, timeline} from './daily/Daily';
+import {PHRASES} from './daily/phrases';
+import {ComingSoon, ComingSoonProps, csTimeline} from './videos/ComingSoon';
+
+const FORMATS = [
+  {id: 'Lahjio-BN-9x16', lang: 'bn', w: 1080, h: 1920},
+  {id: 'Lahjio-BN-16x9', lang: 'bn', w: 1920, h: 1080},
+  {id: 'Lahjio-EN-9x16', lang: 'en', w: 1080, h: 1920},
+  {id: 'Lahjio-EN-16x9', lang: 'en', w: 1920, h: 1080},
+] as const;
+
+// Daily "Saudi phrase of the day" series: Daily-D01-BN-9x16, Daily-D01-EN-4x5, ...
+export const DAILY_SIZES = [
+  {fmt: '9x16', w: 1080, h: 1920},
+  {fmt: '4x5', w: 1080, h: 1350},
+  {fmt: '16x9', w: 1920, h: 1080},
+] as const;
+
+const Root: React.FC = () =>
+  React.createElement(
+    React.Fragment,
+    null,
+    FORMATS.map((c) =>
+      React.createElement(Composition<any, MainProps>, {
+        key: c.id,
+        id: c.id,
+        component: Main,
+        durationInFrames: TOTAL,
+        fps: 30,
+        width: c.w,
+        height: c.h,
+        defaultProps: {lang: c.lang, bgm: true},
+      }),
+    ),
+    PHRASES.flatMap((p) =>
+      (['bn', 'en'] as const).flatMap((lang) =>
+        DAILY_SIZES.map((z) => {
+          const id = `Daily-D${String(p.day).padStart(2, '0')}-${lang.toUpperCase()}-${z.fmt}`;
+          return React.createElement(Composition<any, DailyProps>, {
+            key: id,
+            id,
+            component: Daily,
+            durationInFrames: timeline(p, lang).total,
+            fps: 30,
+            width: z.w,
+            height: z.h,
+            defaultProps: {day: p.day, lang, bgm: true},
+          });
+        }),
+      ),
+    ),
+    // "Android app coming soon" teaser: ComingSoon-BN-9x16, ...
+    (["bn", "en"] as const).flatMap((lang) =>
+      DAILY_SIZES.map((z) => {
+        const id = `ComingSoon-${lang.toUpperCase()}-${z.fmt}`;
+        return React.createElement(Composition<any, ComingSoonProps>, {
+          key: id, id, component: ComingSoon, durationInFrames: csTimeline(lang).total,
+          fps: 30, width: z.w, height: z.h, defaultProps: {lang, bgm: true},
+        });
+      }),
+    ),
+  );
+
+registerRoot(Root);

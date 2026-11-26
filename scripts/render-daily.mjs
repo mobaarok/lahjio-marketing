@@ -8,7 +8,7 @@ import {renderMedia, selectComposition} from '@remotion/renderer';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const SLUGS = {1: 'kam-assir', 2: 'wein-alhammam', 3: 'abgha-moya', 4: 'liff-yameen', 5: 'shway-shway', 6: 'ma-fihimt', 7: 'khalas', 8: 'mafi-mushkila', 9: 'yatik-alafya'};
+const SLUGS = {1: 'kam-assir', 2: 'wein-alhammam', 3: 'abgha-moya', 4: 'liff-yameen', 5: 'shway-shway', 6: 'ma-fihimt', 7: 'khalas', 8: 'mafi-mushkila', 9: 'wesh-ismak'};
 // optional: --lang=EN or --lang=BN to render one language only
 const args = process.argv.slice(2);
 const langArg = args.find((a) => a.startsWith('--lang='))?.slice(7).toUpperCase();

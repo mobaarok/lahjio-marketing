@@ -49,6 +49,6 @@ Hashtags (use on all days): `#সৌদিআরবি #আরবিশেখা
 **BN:** কেউ সরি বা ধন্যবাদ বললে কী বলবে? 👍 বলো: ما في مشكلة (মা ফি মুশকিলা) = কোনো সমস্যা নেই। প্রতিদিন নতুন সৌদি আরবি, ফলো করো! ফ্রি শুরু করো 👉 lahjio.com
 **EN:** Someone says sorry or thanks you? 👍 Say: ما في مشكلة (ma fi mushkila), "No problem." New Saudi phrase every day. Start free 👉 lahjio.com
 
-## Day 9 · يعطيك العافية (ya'tik al-'afya) · আল্লাহ তোমাকে শক্তি দিক
-**BN:** কেউ তোমার জন্য কাজ করলে কীভাবে ধন্যবাদ দেবে? 💪 বলো: يعطيك العافية (ইয়া'তিক আল-আফিয়া) = আল্লাহ তোমাকে শক্তি দিক, মানে কাজের জন্য ধন্যবাদ। উত্তরে বলো: الله يعافيك (আল্লাহ ইয়া'আফিক)। ফ্রি শুরু করো 👉 lahjio.com
-**EN:** How do you thank someone for their work? 💪 Say: يعطيك العافية (ya'tik al-'afya), "God give you strength", a thank-you for someone's work. Reply: الله يعافيك (allah y'afik). Start free 👉 lahjio.com
+## Day 9 · وش اسمك؟ (wesh ismak) · তোমার নাম কী?
+**BN:** সৌদিতে কারো নাম জিজ্ঞেস করবে কীভাবে? 👋 বলো: وش اسمك؟ (ওয়েশ ইসমাক) = তোমার নাম কী? উত্তরে বলো: اسمي ... (ইসমি ...) = আমার নাম ...। ফ্রি শুরু করো 👉 lahjio.com
+**EN:** How do you ask someone's name in Saudi? 👋 Say: وش اسمك؟ (wesh ismak), "What's your name?" Answer: اسمي ... (ismi ...), "My name is ...". Start free 👉 lahjio.com

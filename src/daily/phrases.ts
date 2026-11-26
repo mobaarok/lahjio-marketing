@@ -160,21 +160,21 @@ export const PHRASES: Phrase[] = [
   },
   {
     day: 9,
-    slug: 'yatik-alafya',
-    emoji: '💪',
-    place: {bn: 'কাজে', en: 'At work'},
-    hook: {bn: 'কেউ তোমার জন্য কাজ করলে কীভাবে ধন্যবাদ দেবে?', en: 'How do you thank someone for their work?'},
-    ar: 'يعطيك العافية',
-    tr: {bn: "ইয়া'তিক আল-আফিয়া", en: "ya'tik al-'afya"},
-    meaning: {bn: 'আল্লাহ তোমাকে শক্তি দিক', en: 'God give you strength'},
+    slug: 'wesh-ismak',
+    emoji: '👋',
+    place: {bn: 'নতুন পরিচয়ে', en: 'Meeting someone'},
+    hook: {bn: 'সৌদিতে কারো নাম জিজ্ঞেস করবে কীভাবে?', en: "How do you ask someone's name in Saudi?"},
+    ar: 'وش اسمك؟',
+    tr: {bn: 'ওয়েশ ইসমাক', en: 'wesh ismak'},
+    meaning: {bn: 'তোমার নাম কী?', en: "What's your name?"},
     parts: [
-      {ar: 'يعطيك', bn: 'তোমাকে দিক', en: '(may He) give you'},
-      {ar: 'العافية', bn: 'শক্তি / সুস্থতা', en: 'strength / health'},
+      {ar: 'وش', bn: 'কী', en: 'what'},
+      {ar: 'اسمك', bn: 'তোমার নাম', en: 'your name'},
     ],
-    arAudio: 'audio/yatik-alafya.mp3',
-    arSec: 1.23,
-    bnHookSec: 3.08,
-    bnMeanSec: 6.35,
+    arAudio: 'audio/wesh-ismak.mp3',
+    arSec: 1.15,
+    bnHookSec: 2.69,
+    bnMeanSec: 4.83,
   },
 ];
 
@@ -214,7 +214,7 @@ export const EN_VO: Record<number, {hook: number; mean: number}> = {
   6: {hook: 2.77, mean: 7.0},
   7: {hook: 2.77, mean: 5.49},
   8: {hook: 3.08, mean: 6.19},
-  9: {hook: 2.35, mean: 6.69},
+  9: {hook: 2.69, mean: 4.99},
 };
 export const EN_YOUR_TURN = {src: 'audio/en/your-turn.mp3', sec: 1.65};
 export const EN_OUTRO = {src: 'audio/en/outro.mp3', sec: 3.47};

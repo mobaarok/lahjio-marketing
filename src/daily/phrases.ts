@@ -163,7 +163,7 @@ export const PHRASES: Phrase[] = [
     slug: 'yatik-alafya',
     emoji: '💪',
     place: {bn: 'কাজে', en: 'At work'},
-    hook: {bn: 'সৌদিরা প্রতিদিন কাজের লোককে এটা বলে!', en: 'Saudis say this to workers every day!'},
+    hook: {bn: 'কেউ তোমার জন্য কাজ করলে কীভাবে ধন্যবাদ দেবে?', en: 'How do you thank someone for their work?'},
     ar: 'يعطيك العافية',
     tr: {bn: "ইয়া'তিক আল-আফিয়া", en: "ya'tik al-'afya"},
     meaning: {bn: 'আল্লাহ তোমাকে শক্তি দিক', en: 'God give you strength'},
@@ -173,7 +173,7 @@ export const PHRASES: Phrase[] = [
     ],
     arAudio: 'audio/yatik-alafya.mp3',
     arSec: 1.23,
-    bnHookSec: 2.93,
+    bnHookSec: 3.08,
     bnMeanSec: 6.35,
   },
 ];
@@ -214,7 +214,7 @@ export const EN_VO: Record<number, {hook: number; mean: number}> = {
   6: {hook: 2.77, mean: 7.0},
   7: {hook: 2.77, mean: 5.49},
   8: {hook: 3.08, mean: 6.19},
-  9: {hook: 2.93, mean: 6.69},
+  9: {hook: 2.35, mean: 6.69},
 };
 export const EN_YOUR_TURN = {src: 'audio/en/your-turn.mp3', sec: 1.65};
 export const EN_OUTRO = {src: 'audio/en/outro.mp3', sec: 3.47};

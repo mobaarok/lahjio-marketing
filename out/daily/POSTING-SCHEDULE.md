@@ -50,5 +50,5 @@ Hashtags (use on all days): `#সৌদিআরবি #আরবিশেখা
 **EN:** Someone says sorry or thanks you? 👍 Say: ما في مشكلة (ma fi mushkila), "No problem." New Saudi phrase every day. Start free 👉 lahjio.com
 
 ## Day 9 · يعطيك العافية (ya'tik al-'afya) · আল্লাহ তোমাকে শক্তি দিক
-**BN:** সৌদিরা প্রতিদিন কাজের লোককে এটা বলে 💪 يعطيك العافية (ইয়া'তিক আল-আফিয়া) = আল্লাহ তোমাকে শক্তি দিক, মানে কাজের জন্য ধন্যবাদ। উত্তরে বলো: الله يعافيك (আল্লাহ ইয়া'আফিক)। ফ্রি শুরু করো 👉 lahjio.com
-**EN:** Saudis say this to workers every day 💪 يعطيك العافية (ya'tik al-'afya), "God give you strength", a thank-you for someone's work. Reply: الله يعافيك (allah y'afik). Start free 👉 lahjio.com
+**BN:** কেউ তোমার জন্য কাজ করলে কীভাবে ধন্যবাদ দেবে? 💪 বলো: يعطيك العافية (ইয়া'তিক আল-আফিয়া) = আল্লাহ তোমাকে শক্তি দিক, মানে কাজের জন্য ধন্যবাদ। উত্তরে বলো: الله يعافيك (আল্লাহ ইয়া'আফিক)। ফ্রি শুরু করো 👉 lahjio.com
+**EN:** How do you thank someone for their work? 💪 Say: يعطيك العافية (ya'tik al-'afya), "God give you strength", a thank-you for someone's work. Reply: الله يعافيك (allah y'afik). Start free 👉 lahjio.com

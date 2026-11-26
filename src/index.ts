@@ -4,6 +4,7 @@ import {Main, MainProps, TOTAL} from './Main';
 import {Daily, DailyProps, timeline} from './daily/Daily';
 import {PHRASES} from './daily/phrases';
 import {ComingSoon, ComingSoonProps, csTimeline} from './videos/ComingSoon';
+import {Global, GlobalProps, G_SHOTS} from './videos/Global';
 
 const FORMATS = [
   {id: 'Lahjio-BN-9x16', lang: 'bn', w: 1080, h: 1920},
@@ -62,6 +63,14 @@ const Root: React.FC = () =>
         });
       }),
     ),
+    // "Learn Saudi Arabic in English" (English speakers worldwide): Global-EN-9x16, Global-EN-16x9
+    DAILY_SIZES.filter((z) => z.fmt !== '4x5').map((z) => {
+      const id = `Global-EN-${z.fmt}`;
+      return React.createElement(Composition<any, GlobalProps>, {
+        key: id, id, component: Global, durationInFrames: G_SHOTS.total,
+        fps: 30, width: z.w, height: z.h, defaultProps: {bgm: true},
+      });
+    }),
   );
 
 registerRoot(Root);

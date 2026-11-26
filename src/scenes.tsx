@@ -179,7 +179,7 @@ export const Brand: React.FC<P> = ({t, dur}) => {
 // ───────────────────────── 3. QUIZ (hero) ─────────────────────────
 export const QUIZ_AUDIO_AT = 50;
 export const QUIZ_TAP_AT = 118;
-export const Quiz: React.FC<P> = ({t, lang, dur}) => {
+export const Quiz: React.FC<P & {audioAt?: number; tapAt?: number}> = ({t, lang, dur, audioAt = QUIZ_AUDIO_AT, tapAt = QUIZ_TAP_AT}) => {
   const f = useCurrentFrame();
   const {W, H, V, s} = useLayout();
   const out = exitOf(f, dur);
@@ -191,19 +191,19 @@ export const Quiz: React.FC<P> = ({t, lang, dur}) => {
   const py = V ? H - phoneH - 120 * (H / 1920) : H / 2 - phoneH / 2;
   const float = Math.sin(f / 22) * 6 * s * e;
   // finger tap
-  const fingerIn = ease(f, QUIZ_TAP_AT - 22, QUIZ_TAP_AT - 4);
-  const fingerOut = 1 - ease(f, QUIZ_TAP_AT + 14, QUIZ_TAP_AT + 26);
-  const tapDown = QUIZ_TAP_AT <= f && f < QUIZ_TAP_AT + 6 ? 0.85 : 1;
-  const ripple = lin(f, QUIZ_TAP_AT, QUIZ_TAP_AT + 16);
+  const fingerIn = ease(f, tapAt - 22, tapAt - 4);
+  const fingerOut = 1 - ease(f, tapAt + 14, tapAt + 26);
+  const tapDown = tapAt <= f && f < tapAt + 6 ? 0.85 : 1;
+  const ripple = lin(f, tapAt, tapAt + 16);
   // option 1 centre in phone coords: x 210, y ~ 12+... ≈ 508
   const optX = px + 210 * zoom;
   const optY = py + float + 464 * zoom;
   // XP chip
-  const xp = ease(f, QUIZ_TAP_AT + 6, QUIZ_TAP_AT + 30);
-  const xpFade = 1 - lin(f, QUIZ_TAP_AT + 50, QUIZ_TAP_AT + 62);
+  const xp = ease(f, tapAt + 6, tapAt + 30);
+  const xpFade = 1 - lin(f, tapAt + 50, tapAt + 62);
   // captions
-  const c1 = ease(f, 10, 30) * (1 - ease(f, QUIZ_TAP_AT - 14, QUIZ_TAP_AT - 4));
-  const c2 = ease(f, QUIZ_TAP_AT + 4, QUIZ_TAP_AT + 24);
+  const c1 = ease(f, 10, 30) * (1 - ease(f, tapAt - 14, tapAt - 4));
+  const c2 = ease(f, tapAt + 4, tapAt + 24);
   const capBox: React.CSSProperties = V
     ? {position: 'absolute', left: 0, right: 0, top: 150 * (H / 1920), textAlign: 'center'}
     : {position: 'absolute', left: 150 * s, top: H / 2 - 160 * s, width: 820 * s, textAlign: 'left'};
@@ -241,7 +241,7 @@ export const Quiz: React.FC<P> = ({t, lang, dur}) => {
           }}
         >
           <div style={{zoom}}>
-            <PhoneQuiz lang={lang} label={t.quizLabel} translit={t.translit} options={t.options} next={t.next} local={f} audioAt={QUIZ_AUDIO_AT} tapAt={QUIZ_TAP_AT} />
+            <PhoneQuiz lang={lang} label={t.quizLabel} translit={t.translit} options={t.options} next={t.next} local={f} audioAt={audioAt} tapAt={tapAt} />
           </div>
         </div>
       </div>
@@ -265,7 +265,7 @@ export const Quiz: React.FC<P> = ({t, lang, dur}) => {
           left: px + phoneW + (V ? -60 : 10) * s,
           top: optY - 40 * s - xp * 160 * s,
           opacity: xp * xpFade,
-          transform: `translate(-50%,-50%) scale(${pop(f, QUIZ_TAP_AT + 6, 16)})`,
+          transform: `translate(-50%,-50%) scale(${pop(f, tapAt + 6, 16)})`,
           background: GRAD,
           color: '#fff',
           fontFamily: FBN,
@@ -287,7 +287,7 @@ export const Quiz: React.FC<P> = ({t, lang, dur}) => {
 export const LIFE_AUDIO_AT = 92;
 export const LIFE_DEAL_AT = 22;
 export const LIFE_STAGGER = 8;
-export const Life: React.FC<P> = ({t, dur}) => {
+export const Life: React.FC<P & {audioAt?: number}> = ({t, dur, audioAt: LA = LIFE_AUDIO_AT}) => {
   const f = useCurrentFrame();
   const {W, H, V, s} = useLayout();
   const out = exitOf(f, dur);
@@ -298,8 +298,8 @@ export const Life: React.FC<P> = ({t, dur}) => {
   const slots = V
     ? [0, 1, 2, 3].map((i) => ({x: W / 2 + (i % 2 === 0 ? -1 : 1) * (cw / 2 + gap / 2), y: 1130 * (H / 1920) + (i < 2 ? -1 : 1) * (ch / 2 + gap / 2)}))
     : [0, 1, 2, 3].map((i) => ({x: W / 2 + (i - 1.5) * (cw + gap), y: H * 0.6}));
-  const focus = ease(f, LIFE_AUDIO_AT - 10, LIFE_AUDIO_AT + 4) * (1 - ease(f, LIFE_AUDIO_AT + 50, LIFE_AUDIO_AT + 64));
-  const playing = lin(f, LIFE_AUDIO_AT, LIFE_AUDIO_AT + 6) * (1 - lin(f, LIFE_AUDIO_AT + 36, LIFE_AUDIO_AT + 46));
+  const focus = ease(f, LA - 10, LA + 4) * (1 - ease(f, LA + 50, LA + 64));
+  const playing = lin(f, LA, LA + 6) * (1 - lin(f, LA + 36, LA + 46));
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={{...center, top: V ? 170 * (H / 1920) : 90 * s, fontFamily: FBN, opacity: title, transform: `translateY(${(1 - title) * 30 * s}px)`}}>

@@ -63,6 +63,9 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
   clips `public/audio/global/l1..l8-*.mp3` (~50–130 credits each).
 - Compositions `Global-EN-{9x16,16x9}` (4:5 dropped: the reused Life cards overlap the title at 1350px).
   Render: `node scripts/render-global.mjs` → `out/global-english/` (+ `POSTING.md`).
+- Google Drive: folder "Lahjio – Learn Saudi Arabic in English" (https://drive.google.com/drive/folders/11AqxshuG738LiJtBhB35_wEU2nZdgGL-).
+  **The Drive connector refuses files over 10 MB.** The ~16 MB renders were re-encoded for Drive into `out/global-english/drive/`
+  (`libx264 -preset slow -crf 25 -maxrate 1.15M -bufsize 2.3M`, AAC 128k → ~6 MB, still sharp). Full-quality originals stay local.
 
 ## ElevenLabs
 - Voice: **Abdulrahman - Warm, Clear, Commercial** (native Saudi male) `voice_id: KfYUTAF49N2CPU3iKuMi`, model `eleven_v4`
@@ -100,3 +103,15 @@ composition ids. Reuse `Background`, `Logo`, the Outro CTA and the brand tokens 
 ## Git
 - Repo: https://github.com/mobaarok/lahjio-marketing (branch `main`). Commit code, audio, and posting notes; rendered `*.mp4`, QA stills and logs are git-ignored (videos go to Google Drive).
 - **Claude pushes, not the user (user asked 2026-11-26: "you do"):** at the end of every Lahjio task (new video, new audio, caption changes), run `git add -A; git commit; git push` yourself. Never commit `*.mp4` (videos go to Google Drive). Do not commit another session's half-finished edits; push once the work is done.
+
+## Instagram images (made 2026-11-26)
+- **Two accounts:** Bangla = **@lahjiobn**, English = **@lahjioapp** (user corrected this; don't swap them). Same designs, text per language.
+- Remotion stills in `src/insta/` with their own entry `src/insta/root.tsx` (not in `src/index.ts`). `kit.tsx` = frame/header/footer, icons, cards,
+  language context (`useT()('বাংলা', 'English')`, `HANDLE`, `useNum` for Bengali digits); `launch.tsx` = 9-post launch grid; `week1.tsx` = week-1 posts (Day 1 carousel);
+  `extras.tsx` = profile pic, highlight covers, grid previews. No language toggle is shown on the images (user: "no need to add language switch").
+- Render: `node scripts/render-insta.mjs [filter] [scale]` → `out/instagram/{bangla,english}/<folder>/<name>.png` (still id `ig--<bangla|english>--folder--name`).
+  Captions/bio/order: `out/instagram/{bangla,english}/POSTING-PLAN.md`.
+- Google Drive: "Lahjio Instagram – Bangla (@lahjiobn)" https://drive.google.com/drive/folders/1KNUTXeaUbqtd_rZjwRh7BtKKyjqTBj9w and
+  "Lahjio Instagram – English (@lahjioapp)" https://drive.google.com/drive/folders/1Mj19smZYKyyysKea5Nu1r4ca9VhdMMOf. The Drive connector can't replace a file's content: re-upload and trash the old one.
+- Feed 1080×1350; the grid crops to 3:4, so keep content in the centre ~1000px. Posts alternate green/light so the grid is a checkerboard: keep alternating for new posts.
+- Avoid emoji in images (use SVG icons). Watch Bengali double meanings (e.g. غالي "gali" reads as an insult).

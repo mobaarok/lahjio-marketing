@@ -1,0 +1,62 @@
+LAHJIO PROMO: VIDEO POSTING GUIDE
+=================================
+All videos are in this folder. Each is about 32 seconds long.
+"noMusic" versions keep the sound effects and the Arabic voice but drop the music.
+
+WHICH FILE GOES WHERE
+---------------------
+Instagram Reels / Stories ......... Lahjio-BN-9x16.mp4
+TikTok ............................ Lahjio-BN-9x16-noMusic.mp4 (add a trending TikTok sound for more reach)
+YouTube Shorts .................... Lahjio-BN-9x16.mp4
+Facebook Reels .................... Lahjio-BN-9x16.mp4
+YouTube video / Facebook feed ..... Lahjio-BN-16x9.mp4
+English audience / ads ............ Lahjio-EN-9x16.mp4 and Lahjio-EN-16x9.mp4
+
+Note: the Drive copies are compressed to about 5.5 MB to fit the upload limit. Social apps
+re-compress uploads anyway. Full-quality originals are on the PC in lahjio-promo/out/final.
+
+
+CAPTIONS: BENGALI
+=================
+
+[Instagram / Facebook]
+সৌদিতে থাকো, কিন্তু আরবি বুঝতে কষ্ট হয়? 🇸🇦
+Lahjio-তে বাংলায় শেখো আসল সৌদি আরবি: দোকানে, ট্যাক্সিতে, কাজে যা প্রতিদিন লাগে।
+
+🔊 প্রতিটি শব্দের আসল উচ্চারণ
+🎯 খেলার মতো ছোট ছোট কুইজ
+🔥 দিনে মাত্র ৫ মিনিট
+
+শুরু করা ফ্রি 👉 lahjio.com
+
+#সৌদিআরবি #আরবিশেখা #প্রবাসী #SaudiArabic #LearnArabic #Lahjio #প্রবাসীবাংলাদেশি #KSA
+
+[TikTok]
+সৌদিতে "كم السعر؟" মানে কী জানো? 👀 দিনে ৫ মিনিটে বাংলায় শেখো সৌদি আরবি, ফ্রি 👉 lahjio.com
+#সৌদিআরবি #প্রবাসী #আরবিশেখা #LearnArabic #fyp
+
+[YouTube]
+Title: সৌদি আরবি শেখো বাংলায়: দিনে মাত্র ৫ মিনিট | Lahjio
+Description: দোকানে, ট্যাক্সিতে, কাজে প্রতিদিনের সৌদি আরবি। অডিওসহ ছোট লেসন, কুইজ আর স্ট্রিক। ফ্রি শুরু করো: https://lahjio.com
+
+
+CAPTIONS: ENGLISH
+=================
+Living in Saudi Arabia but Arabic feels hard? 🇸🇦
+Lahjio teaches real Saudi Arabic for the shop, the taxi and work, explained in Bengali.
+
+🔊 Native Saudi audio for every word
+🎯 Bite-size quizzes
+🔥 Just 5 minutes a day
+
+Start free 👉 lahjio.com
+#LearnArabic #SaudiArabic #Expat #KSA #Lahjio
+
+
+CREDITS AND LICENSES
+====================
+- Arabic voice clips: ElevenLabs, Saudi voice "Abdulrahman". Generated on our account, so commercial use is
+  covered by our ElevenLabs plan.
+- Music: "House Vibez" by Lily J, Mixkit Stock Music Free License (commercial use OK, no credit needed).
+- Sound effects: Mixkit Free License. Four (whoosh-big, riser-cine, sparkle, pop) have no traceable source,
+  so for paid ads the noMusic version or replacing those four is the safer choice.

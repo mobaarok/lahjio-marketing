@@ -47,7 +47,7 @@ Description: দোকানে, ট্যাক্সিতে, কাজে �
 
 ```
 Living in Saudi Arabia but Arabic feels hard? 🇸🇦
-Lahjio teaches real Saudi Arabic for the shop, the taxi and work, explained in Bengali.
+Lahjio teaches real spoken Saudi Arabic for the shop, the taxi and work.
 
 🔊 Native Saudi audio for every word
 🎯 Bite-size quizzes

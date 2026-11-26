@@ -80,7 +80,7 @@ export const COPY: Record<Lang, Copy> = {
     ],
     tagA: 'Learn ',
     tagB: 'real Saudi Arabic',
-    tagC: ' — explained in Bengali',
+    tagC: '',
     quizLabel: 'What does it mean?',
     translit: "kam as-si'r",
     options: ['How much?', 'Where?', 'Thank you'],

@@ -1,6 +1,6 @@
-# @lahjioapp Instagram: launch kit + week 1
+# @lahjiobn Instagram (Bangla account): launch kit + week 1
 
-All images are in `out/instagram/` (re-render with `node scripts/render-insta.mjs`; code in `src/insta/`).
+All images are in `out/instagram/bangla/` (re-render with `node scripts/render-insta.mjs`; code in `src/insta/`).
 Feed posts are 1080 × 1350 (4:5). `03-grid-preview/` shows how the profile will look. Don't post the preview images.
 
 ## Step 0 · Set up the profile (5 minutes)

@@ -6,6 +6,23 @@ import {C, FAR, FBN, GRAD} from '../theme';
 import {Logo} from '../parts';
 
 export type V = 'light' | 'green';
+
+// Language of the image set. Bangla account = @lahjiobn, English account = @lahjioapp.
+export type Lang = 'bn' | 'en';
+const LangCtx = React.createContext<Lang>('bn');
+export const LangProvider = LangCtx.Provider;
+export const useLang = () => React.useContext(LangCtx);
+// t('বাংলা', 'English') picks the text for the current set
+export const useT = () => {
+  const l = useLang();
+  return <T,>(bn: T, en: T): T => (l === 'bn' ? bn : en);
+};
+export const HANDLE: Record<Lang, string> = {bn: '@lahjiobn', en: '@lahjioapp'};
+const BN_D = '০১২৩৪৫৬৭৮৯';
+export const useNum = () => {
+  const l = useLang();
+  return (n: number | string) => (l === 'bn' ? String(n).replace(/\d/g, (d) => BN_D[Number(d)]) : String(n));
+};
 export const PAD = 76;
 
 export const GREEN_BG = 'linear-gradient(150deg, #047857 0%, #059669 48%, #14b8a6 100%)';
@@ -51,7 +68,9 @@ export const ink = (v: V) => (v === 'light' ? C.ink : '#fff');
 export const sub = (v: V) => (v === 'light' ? C.body : 'rgba(255,255,255,0.88)');
 
 // Post frame: header (logo + name + tag) and footer (site + handle)
-export const Post: React.FC<{v: V; tag?: string; children: React.ReactNode; footer?: boolean}> = ({v, tag, children, footer = true}) => (
+export const Post: React.FC<{v: V; tag?: string; children: React.ReactNode; footer?: boolean}> = ({v, tag, children, footer = true}) => {
+  const lang = useLang();
+  return (
   <AbsoluteFill style={{fontFamily: FBN, color: ink(v)}}>
     <Bg v={v} />
     <div style={{position: 'absolute', top: 62, left: PAD, right: PAD, display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -79,11 +98,12 @@ export const Post: React.FC<{v: V; tag?: string; children: React.ReactNode; foot
         }}
       >
         <span>lahjio.com</span>
-        <span>@lahjioapp</span>
+        <span>{HANDLE[lang]}</span>
       </div>
     ) : null}
   </AbsoluteFill>
-);
+  );
+};
 
 export const Pill: React.FC<{v: V; children: React.ReactNode; size?: number}> = ({v, children, size = 30}) => (
   <span

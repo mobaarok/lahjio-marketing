@@ -3,7 +3,7 @@ import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {C, FBN} from '../theme';
 import {Logo} from '../parts';
-import {GREEN_BG, Icon} from './kit';
+import {GREEN_BG, HANDLE, Icon, useLang, useT} from './kit';
 import {LAUNCH} from './launch';
 import {WEEK1} from './week1';
 
@@ -29,11 +29,11 @@ const Highlight: React.FC<{icon: string}> = ({icon}) => (
   </AbsoluteFill>
 );
 export const HL = [
-  {file: 'highlight-1-start', icon: 'sparkle', label: 'শুরু'},
-  {file: 'highlight-2-phrases', icon: 'chat', label: 'বাক্য'},
-  {file: 'highlight-3-quiz', icon: 'question', label: 'কুইজ'},
-  {file: 'highlight-4-tips', icon: 'bulb', label: 'টিপস'},
-  {file: 'highlight-5-app', icon: 'phone', label: 'অ্যাপ'},
+  {file: 'highlight-1-start', icon: 'sparkle', label: 'শুরু', en: 'Start'},
+  {file: 'highlight-2-phrases', icon: 'chat', label: 'বাক্য', en: 'Phrases'},
+  {file: 'highlight-3-quiz', icon: 'question', label: 'কুইজ', en: 'Quiz'},
+  {file: 'highlight-4-tips', icon: 'bulb', label: 'টিপস', en: 'Tips'},
+  {file: 'highlight-5-app', icon: 'phone', label: 'অ্যাপ', en: 'App'},
 ].map((h) => ({...h, C: () => <Highlight icon={h.icon} />}));
 
 // Profile mock-up with the grid (newest post top-left), so the user can see the finished look.
@@ -51,10 +51,12 @@ const Thumb: React.FC<{C: React.FC; w: number}> = ({C: P, w}) => {
 
 const GridPreview: React.FC<{posts: React.FC[]}> = ({posts}) => {
   const w = (1080 - 4) / 3;
+  const t = useT();
+  const lang = useLang();
   return (
     <AbsoluteFill style={{background: '#fff', fontFamily: FBN, color: '#000'}}>
       <div style={{padding: '50px 44px 26px'}}>
-        <div style={{fontSize: 46, fontWeight: 700}}>lahjioapp</div>
+        <div style={{fontSize: 46, fontWeight: 700}}>{HANDLE[lang].slice(1)}</div>
         <div style={{display: 'flex', alignItems: 'center', gap: 60, marginTop: 30}}>
           <div style={{width: 200, height: 200, borderRadius: 200, overflow: 'hidden', flexShrink: 0, boxShadow: '0 0 0 6px #fff, 0 0 0 9px #e5e7eb'}}>
             <div style={{width: 1080, height: 1080, transform: 'scale(0.1852)', transformOrigin: '0 0'}}>
@@ -73,11 +75,11 @@ const GridPreview: React.FC<{posts: React.FC[]}> = ({posts}) => {
           ))}
         </div>
         <div style={{fontSize: 32, lineHeight: 1.4, marginTop: 24}}>
-          <b>Lahjio · সৌদি আরবি শেখো</b>
+          <b>{t('Lahjio · সৌদি আরবি শেখো', 'Lahjio · Learn Saudi Arabic')}</b>
           <br />
-          বাংলায় সৌদি আরবি · দিনে ৫ মিনিট · অডিওসহ ৭৭৩+ শব্দ
+          {t('বাংলায় সৌদি আরবি · দিনে ৫ মিনিট · অডিওসহ ৭৭৩+ শব্দ', 'Real spoken Saudi · 5 min a day · 773+ words with audio')}
           <br />
-          ফ্রি শুরু করো ↓
+          {t('ফ্রি শুরু করো ↓', 'Start free ↓')}
           <br />
           <span style={{color: '#00376b', fontWeight: 600}}>lahjio.com</span>
         </div>
@@ -89,7 +91,7 @@ const GridPreview: React.FC<{posts: React.FC[]}> = ({posts}) => {
                   <h.C />
                 </div>
               </div>
-              <div style={{fontSize: 26, marginTop: 14}}>{h.label}</div>
+              <div style={{fontSize: 26, marginTop: 14}}>{t(h.label, h.en)}</div>
             </div>
           ))}
         </div>

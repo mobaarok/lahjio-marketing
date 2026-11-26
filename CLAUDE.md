@@ -49,7 +49,20 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
   badge + loading bar + lahjio.com → logo outro with يلا نبدأ). Timing is computed from narrator clip lengths (`CS_VO`).
 - Compositions `ComingSoon-{BN,EN}-{9x16,4x5,16x9}`. Narrator clips: `public/audio/{bn,en}/cs-hook.mp3`, `cs-play.mp3`.
 - QA: `node scripts/stills-cs.mjs <frames> [scale]` · render: `node scripts/render-coming-soon.mjs` → `out/coming-soon/{bangla,english}/` (+ `POSTING.md`).
+- Google Drive: folder "Lahjio Android App – Coming Soon" (https://drive.google.com/drive/folders/1DHrmB9viPE2c4wy2h2RksxfQ0pT3etk1) with `Bangla/` and `English/` subfolders + captions txt. Other Drive folders: "Lahjio Promo Videos", "Lahjio Daily Phrases – Week 1". Upload with the Drive connector `create_file` (base64Content as a sha256 file reference).
 - The app is not on Play yet; when it launches, make a "now available" version (change badge text to "GET IT ON").
+
+## "Learn Saudi Arabic in English" (made 2026-11-26)
+- For English speakers anywhere (Philippines/India/UK/USA). **English only** (user asked), so no BN version. lahjio.com
+  has an EN/हि/اُر/বাং language switch; lessons for English speakers exist.
+- Code: `src/videos/Global.tsx` (+ text in `src/videos/GlobalCopy.ts`). Scenes: hook (plane, Riyadh/Jeddah/Dammam) →
+  city cards with SVG flags (flag emoji don't render on Windows) → "not textbook Arabic" → reused `Quiz` → `Life` →
+  `Habit` → website + phone ("Add to Home screen", it is a web app) → reused `Outro`. Timing is computed from clip lengths (`G_VO`).
+- `Quiz` and `Life` in `scenes.tsx` now take optional `audioAt` / `tapAt` props (defaults keep promo #1 unchanged).
+- Narrator: ElevenLabs **"Sarah – Warm & Conversational"** (American female) `voice_id: h1Q2hoJVsQ8dXy9QYQN5`, eleven_v4,
+  clips `public/audio/global/l1..l8-*.mp3` (~50–130 credits each).
+- Compositions `Global-EN-{9x16,16x9}` (4:5 dropped: the reused Life cards overlap the title at 1350px).
+  Render: `node scripts/render-global.mjs` → `out/global-english/` (+ `POSTING.md`).
 
 ## ElevenLabs
 - Voice: **Abdulrahman - Warm, Clear, Commercial** (native Saudi male) `voice_id: KfYUTAF49N2CPU3iKuMi`, model `eleven_v4`

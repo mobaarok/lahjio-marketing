@@ -67,6 +67,8 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
 - Google Drive: folder "Lahjio – Learn Saudi Arabic in English" (https://drive.google.com/drive/folders/11AqxshuG738LiJtBhB35_wEU2nZdgGL-).
   **The Drive connector refuses files over 10 MB.** The ~16 MB renders were re-encoded for Drive into `out/global-english/drive/`
   (`libx264 -preset slow -crf 25 -maxrate 1.15M -bufsize 2.3M`, AAC 128k → ~6 MB, still sharp). Full-quality originals stay local.
+- **From a cloud session the Drive upload limit is ~3.1 MB per call.** Shrink with two-pass x264 to ~2.85 MB (AAC 96k, bitrate from duration) into
+  `out/drive-small/` before uploading. Done for day 8 and the fixed English promo (2026-11-26).
 
 ## ElevenLabs
 - Voice: **Abdulrahman - Warm, Clear, Commercial** (native Saudi male) `voice_id: KfYUTAF49N2CPU3iKuMi`, model `eleven_v4`

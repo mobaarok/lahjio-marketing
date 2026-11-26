@@ -110,6 +110,10 @@ composition ids. Reuse `Background`, `Logo`, the Outro CTA and the brand tokens 
 - Repo: https://github.com/mobaarok/lahjio-marketing (branch `main`). Commit code, audio, and posting notes; rendered `*.mp4`, QA stills and logs are git-ignored (videos go to Google Drive).
 - **Claude pushes, not the user (user asked 2026-11-26: "you do"):** at the end of every Lahjio task (new video, new audio, caption changes), run `git add -A; git commit; git push` yourself. Never commit `*.mp4` (videos go to Google Drive). Do not commit another session's half-finished edits; push once the work is done.
 
+## Thumbnails and Reel covers (2026-11-26)
+- `src/thumbs/root.tsx` (own entry): `yt--promo1-{en,bn}` (1280×720 YouTube) and `reel--promo1-{en,bn}` (1080×1920 Reel cover; key content inside y 240–1680 for the 3:4 grid crop).
+- Render: `node scripts/render-thumbs.mjs [filter]` → `out/thumbnails/*.jpg` (+ png). On Drive in "Lahjio Promo Videos" as `Thumbnail-YouTube-Bangla.jpg`, `ReelCover-{English,Bangla}.jpg`.
+
 ## Instagram images (made 2026-11-26)
 - **Two accounts:** Bangla = **@lahjiobn**, English = **@lahjioapp** (user corrected this; don't swap them). Same designs, text per language.
 - Remotion stills in `src/insta/` with their own entry `src/insta/root.tsx` (not in `src/index.ts`). `kit.tsx` = frame/header/footer, icons, cards,

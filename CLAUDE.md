@@ -86,3 +86,4 @@ composition ids. Reuse `Background`, `Logo`, the Outro CTA and the brand tokens 
 
 ## Git
 - Repo: https://github.com/mobaarok/lahjio-marketing (branch `main`). Commit code, audio, and posting notes; rendered `*.mp4`, QA stills and logs are git-ignored (videos go to Google Drive).
+- **Claude pushes, not the user (user asked 2026-11-26: "you do"):** at the end of every Lahjio task (new video, new audio, caption changes), run `git add -A; git commit; git push` yourself. Never commit `*.mp4` (videos go to Google Drive). Do not commit another session's half-finished edits; push once the work is done.

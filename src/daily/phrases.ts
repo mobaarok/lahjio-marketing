@@ -140,6 +140,24 @@ export const PHRASES: Phrase[] = [
     bnHookSec: 2.93,
     bnMeanSec: 5.07,
   },
+  {
+    day: 8,
+    slug: 'mafi-mushkila',
+    emoji: '👍',
+    place: {bn: 'যে কোনো জায়গায়', en: 'Any time'},
+    hook: {bn: 'কেউ সরি বললে আরবিতে কী বলবে?', en: "Someone says sorry? Here's what to say."},
+    ar: 'ما في مشكلة',
+    tr: {bn: 'মা ফি মুশকিলা', en: 'ma fi mushkila'},
+    meaning: {bn: 'কোনো সমস্যা নেই', en: 'No problem'},
+    parts: [
+      {ar: 'ما في', bn: 'নেই', en: "there's no"},
+      {ar: 'مشكلة', bn: 'সমস্যা', en: 'problem'},
+    ],
+    arAudio: 'audio/mafi-mushkila.mp3',
+    arSec: 1.15,
+    bnHookSec: 2.43,
+    bnMeanSec: 5.07,
+  },
 ];
 
 export const BN_YOUR_TURN = {src: 'audio/bn/your-turn.mp3', sec: 1.31};
@@ -177,6 +195,7 @@ export const EN_VO: Record<number, {hook: number; mean: number}> = {
   5: {hook: 2.69, mean: 4.91},
   6: {hook: 2.77, mean: 7.0},
   7: {hook: 2.77, mean: 5.49},
+  8: {hook: 3.08, mean: 6.19},
 };
 export const EN_YOUR_TURN = {src: 'audio/en/your-turn.mp3', sec: 1.65};
 export const EN_OUTRO = {src: 'audio/en/outro.mp3', sec: 3.47};

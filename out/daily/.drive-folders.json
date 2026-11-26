@@ -1,11 +1,37 @@
 {
   "root": "1ur4Y7JIa5qPShygJ4DVukwaOJuEkXU1m",
   "promoFolder": "1egjeyXqGEUBXR4s-6rgje8710DCW0jTP",
-  "day-01-kam-assir": {"bangla": "1r2m7ALtuqRngmKsfLx3bgnqmoFSy221o", "english": "1f6Xr1W8LInKPp8-XGu8NQYLC8xCovd0B"},
-  "day-02-wein-alhammam": {"bangla": "14R0zu6aMZEWXZge_Ko5Lp2dA-evk0g3y", "english": "1iyWhAAVo_fgLD7dk9_a3QNcVbN0yMS9j"},
-  "day-03-abgha-moya": {"bangla": "1U0XoJe9vlzErmh4Y5uAmwpr1hnkeDyQ4", "english": "1h7ytSvZP9EJeW6izPPnRnyVRM4lTFGkN"},
-  "day-04-liff-yameen": {"bangla": "1yQYVJMNtgnaK0W0co8Vh6EQOlhjxdJ0m", "english": "1kvVPwVDvN-yP2Lo6Ma-P4C39enp_aWdS"},
-  "day-05-shway-shway": {"bangla": "1zyf1M3r_AA96yAxhV-dS7xkM2r3HwrPF", "english": "1b6BZnnPXiVG4da0mrn4M6UZYp8CnIFAS"},
-  "day-06-ma-fihimt": {"bangla": "1fHiKrnNzBpzWxUvmT5QApPnKI0l48cX1", "english": "1ZHRiP6Qy7pd5mMoREvjmE32XzhvcKW_f"},
-  "day-07-khalas": {"bangla": "161UxEZbdyp_01m92XkfSKHBmwsO7Rzhw", "english": "1le947naVY3uhSXlSjaeaStKGRjUEngda"}
+  "day-01-kam-assir": {
+    "bangla": "1r2m7ALtuqRngmKsfLx3bgnqmoFSy221o",
+    "english": "1f6Xr1W8LInKPp8-XGu8NQYLC8xCovd0B"
+  },
+  "day-02-wein-alhammam": {
+    "bangla": "14R0zu6aMZEWXZge_Ko5Lp2dA-evk0g3y",
+    "english": "1iyWhAAVo_fgLD7dk9_a3QNcVbN0yMS9j"
+  },
+  "day-03-abgha-moya": {
+    "bangla": "1U0XoJe9vlzErmh4Y5uAmwpr1hnkeDyQ4",
+    "english": "1h7ytSvZP9EJeW6izPPnRnyVRM4lTFGkN"
+  },
+  "day-04-liff-yameen": {
+    "bangla": "1yQYVJMNtgnaK0W0co8Vh6EQOlhjxdJ0m",
+    "english": "1kvVPwVDvN-yP2Lo6Ma-P4C39enp_aWdS"
+  },
+  "day-05-shway-shway": {
+    "bangla": "1zyf1M3r_AA96yAxhV-dS7xkM2r3HwrPF",
+    "english": "1b6BZnnPXiVG4da0mrn4M6UZYp8CnIFAS"
+  },
+  "day-06-ma-fihimt": {
+    "bangla": "1fHiKrnNzBpzWxUvmT5QApPnKI0l48cX1",
+    "english": "1ZHRiP6Qy7pd5mMoREvjmE32XzhvcKW_f"
+  },
+  "day-07-khalas": {
+    "bangla": "161UxEZbdyp_01m92XkfSKHBmwsO7Rzhw",
+    "english": "1le947naVY3uhSXlSjaeaStKGRjUEngda"
+  },
+  "week2": "1ItMjri7SYSBVWJzBQiVajgdb_HgnmFOT",
+  "day-08-mafi-mushkila": {
+    "bangla": "1THKLZTk3rqQBfMGd0No980tuLc8dIw-C",
+    "english": "1kffcomyufyHOYRlCcM-h-pOAxNY6EekW"
+  }
 }

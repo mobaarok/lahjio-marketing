@@ -44,3 +44,7 @@ Hashtags (use on all days): `#সৌদিআরবি #আরবিশেখা
 ## Day 7 · خلاص (khalas) · ব্যস, শেষ!
 **BN:** সৌদিতে সবচেয়ে বেশি শোনা শব্দ ✋ خلاص (খালাস) = ব্যস, শেষ! তুমি কতবার শুনেছো? কমেন্টে বলো 👇 lahjio.com
 **EN:** The word you hear everywhere in Saudi ✋ خلاص (khalas), "Done! That's enough." How often do you hear it? 👇 lahjio.com
+
+## Day 8 · ما في مشكلة (ma fi mushkila) · কোনো সমস্যা নেই
+**BN:** কেউ সরি বা ধন্যবাদ বললে কী বলবে? 👍 বলো: ما في مشكلة (মা ফি মুশকিলা) = কোনো সমস্যা নেই। প্রতিদিন নতুন সৌদি আরবি, ফলো করো! ফ্রি শুরু করো 👉 lahjio.com
+**EN:** Someone says sorry or thanks you? 👍 Say: ما في مشكلة (ma fi mushkila), "No problem." New Saudi phrase every day. Start free 👉 lahjio.com

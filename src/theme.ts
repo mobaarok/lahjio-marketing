@@ -1,6 +1,5 @@
 import {Easing, interpolate} from 'remotion';
-import {loadFont as loadBn} from '@remotion/google-fonts/HindSiliguri';
-import {loadFont as loadAr} from '@remotion/google-fonts/NotoNaskhArabic';
+import {FBN, FAR} from './fonts';
 
 // Design tokens pulled from lahjio.com computed styles
 export const C = {
@@ -20,8 +19,7 @@ export const C = {
 export const GRAD = `linear-gradient(90deg, ${C.green} 0%, ${C.teal} 100%)`;
 export const GRAD_CARD = `linear-gradient(135deg, ${C.green} 0%, ${C.teal} 100%)`;
 
-export const FBN = loadBn('normal', {weights: ['400', '500', '600', '700'], subsets: ['bengali', 'latin']}).fontFamily;
-export const FAR = loadAr('normal', {weights: ['400', '600', '700'], subsets: ['arabic']}).fontFamily;
+export {FBN, FAR};
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 

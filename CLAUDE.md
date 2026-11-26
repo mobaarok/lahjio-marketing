@@ -43,6 +43,7 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
   Render one language with `node scripts/render-daily.mjs [days] --lang=EN`.
   Bengali lines cost ~30–65 credits each. Files: `public/audio/bn/d{N}-hook.mp3`, `d{N}-mean.mp3`.
 - Separate Bangla and English videos; one file per platform (incl. 4:5 feed).
+- Day 8 (ما في مشكلة, "No problem") starts week 2: Drive folder "Lahjio Daily Phrases – Week 2" (https://drive.google.com/drive/folders/1ItMjri7SYSBVWJzBQiVajgdb_HgnmFOT). Folder ids per day in `out/daily/.drive-folders.json`.
 
 ## "Android app coming soon" teaser (made 2026-11-26)
 - Code: `src/videos/ComingSoon.tsx` (scenes hook "big news" → phone with app home + "coming soon" stamp → Google Play
@@ -91,6 +92,9 @@ composition ids. Reuse `Background`, `Logo`, the Outro CTA and the brand tokens 
 - QA stills (bundles once): `node scripts/stills.mjs Lahjio-BN-9x16 90,354,746 0.4` → `out/qa/`
 - Render: `npx remotion render src/index.ts <id> out/final/<id>.mp4 --codec=h264 --crf=18`
 - No-music version: add `--props=props-nobgm.json`
+- **Fonts are local** (`src/fonts.ts` loads `public/fonts/*.woff2`, copies of the Google Fonts files): no font download at render time.
+- **Cloud sessions:** use the personal environment "lahjio-marketing" (allows `elevenlabsusercontent.com` for clip downloads). Run `npm ci` first. Remotion can't download its Chrome there, so set
+  `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell` (read by `qa-daily.mjs` / `render-daily.mjs`).
 - ffmpeg/ffprobe: run through `npx remotion ffmpeg` / `npx remotion ffprobe` (there is no system ffmpeg; its build has no `tile` filter, so look at frames one by one). There is also no Python on this machine.
 
 ## Lessons from video #1

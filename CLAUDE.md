@@ -97,7 +97,7 @@ composition ids. Reuse `Background`, `Logo`, the Outro CTA and the brand tokens 
 - **Fonts are local** (`src/fonts.ts` loads `public/fonts/*.woff2`, copies of the Google Fonts files): no font download at render time.
 - **Cloud sessions:** use the personal environment "lahjio-marketing" (allows `elevenlabsusercontent.com` for clip downloads). Run `npm ci` first. Remotion can't download its Chrome there, so set
   `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell` (read by `qa-daily.mjs` / `render-daily.mjs`).
-- ffmpeg/ffprobe: run through `npx remotion ffmpeg` / `npx remotion ffprobe` (there is no system ffmpeg; its build has no `tile` filter, so look at frames one by one). There is also no Python on this machine.
+- ffmpeg/ffprobe: system FFmpeg 9.1 full build installed 2026-11-28 (`winget install Gyan.FFmpeg`, has the `tile` filter; open a new terminal for PATH). `npx remotion ffmpeg` / `npx remotion ffprobe` still work (that build has no `tile`). There is also no Python on this machine.
 
 ## Lessons from video #1
 - Check stills of both layouts (vertical BN and horizontal EN) before the final render. Long Bengali text overflows narrow vertical cards.

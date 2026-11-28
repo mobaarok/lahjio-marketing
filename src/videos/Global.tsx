@@ -1,63 +1,88 @@
 // "Learn Saudi Arabic in English" — for English speakers from anywhere (Philippines, India, UK, USA, ...)
-// English only, ElevenLabs narrator "Sarah – Warm & Conversational". 9:16 / 4:5 / 16:9.
+// EN: narrator "Sarah – Warm & Conversational". BN (re-targeted at Bengali speakers): narrator "Shadhin Bangla". 9:16 / 16:9.
 import React from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame} from 'remotion';
 import {ArText, Background, Check, GradText, Logo, Speaker, useLayout} from '../parts';
 import {Habit, Life, Outro, OUTRO_AUDIO_AT, OUTRO_SLAM_AT, Quiz} from '../scenes';
 import {C, EASE_IO, FBN, GRAD, ease, exitOf, lin, mulberry32, pop} from '../theme';
-import {GLOBAL as t} from './GlobalCopy';
+import {GLOBAL, GLOBAL_BN, GlobalCopy} from './GlobalCopy';
+
+type GLang = 'en' | 'bn';
+const TCtx = React.createContext<GlobalCopy>(GLOBAL);
+const useT = () => React.useContext(TCtx);
 
 const F = (sec: number) => Math.ceil(sec * 30);
 
 // Narrator clips; lengths measured with ffprobe
-export const G_VO = {
-  hook: {src: 'audio/global/l1-hook.mp3', sec: 3.97},
-  cities: {src: 'audio/global/l2-cities.mp3', sec: 8.36},
-  real: {src: 'audio/global/l3-real.mp3', sec: 6.35},
-  listen: {src: 'audio/global/l4-listen.mp3', sec: 3.87},
-  means: {src: 'audio/global/l5-means.mp3', sec: 4.28},
-  lessons: {src: 'audio/global/l6-lessons.mp3', sec: 5.33},
-  habit: {src: 'audio/global/l7-habit.mp3', sec: 5.33},
-  devices: {src: 'audio/global/l8-devices.mp3', sec: 6.03},
+type VO = {src: string; sec: number};
+export const G_VO: Record<GLang, Record<'hook' | 'cities' | 'real' | 'listen' | 'means' | 'lessons' | 'habit' | 'devices', VO>> = {
+  en: {
+    hook: {src: 'audio/global/l1-hook.mp3', sec: 3.97},
+    cities: {src: 'audio/global/l2-cities.mp3', sec: 8.36},
+    real: {src: 'audio/global/l3-real.mp3', sec: 6.35},
+    listen: {src: 'audio/global/l4-listen.mp3', sec: 3.87},
+    means: {src: 'audio/global/l5-means.mp3', sec: 4.28},
+    lessons: {src: 'audio/global/l6-lessons.mp3', sec: 5.33},
+    habit: {src: 'audio/global/l7-habit.mp3', sec: 5.33},
+    devices: {src: 'audio/global/l8-devices.mp3', sec: 6.03},
+  },
+  bn: {
+    hook: {src: 'audio/bn/g1-hook.mp3', sec: 3.92},
+    cities: {src: 'audio/bn/g2-cities.mp3', sec: 8.08},
+    real: {src: 'audio/bn/g3-real.mp3', sec: 6.72},
+    listen: {src: 'audio/bn/g4-listen.mp3', sec: 3.52},
+    means: {src: 'audio/bn/g5-means.mp3', sec: 4.16},
+    lessons: {src: 'audio/bn/g6-lessons.mp3', sec: 5.12},
+    habit: {src: 'audio/bn/g7-habit.mp3', sec: 6.4},
+    devices: {src: 'audio/bn/g8-devices.mp3', sec: 6.0},
+  },
 };
 
 // Scene-local timing
 const VO_IN = 6; // narrator starts this many frames into a scene
-const Q_AUDIO = VO_IN + F(G_VO.listen.sec) + 4; // Saudi "kam as-si'r" plays
-const Q_TAP = Q_AUDIO + 40;
-const Q_MEANS = Q_TAP + 10;
-const L_AUDIO = 20 + F(G_VO.lessons.sec) + 6; // "kef halak" after the narrator line
 
-export const G_SHOTS = (() => {
+export const gTimeline = (lang: GLang) => {
+  const vo = G_VO[lang];
+  const qAudio = VO_IN + F(vo.listen.sec) + 4; // Saudi "kam as-si'r" plays
+  const qTap = qAudio + 40;
+  const qMeans = qTap + 10;
+  const lAudio = 20 + F(vo.lessons.sec) + 6; // "kef halak" after the narrator line
   const d = {
-    hook: VO_IN + F(G_VO.hook.sec) + 14,
-    cities: VO_IN + F(G_VO.cities.sec) + 22,
-    real: VO_IN + F(G_VO.real.sec) + 16,
-    quiz: Q_MEANS + F(G_VO.means.sec) + 18,
-    life: L_AUDIO + 60,
-    habit: VO_IN + F(G_VO.habit.sec) + 18,
-    devices: VO_IN + F(G_VO.devices.sec) + 16,
+    hook: VO_IN + F(vo.hook.sec) + 14,
+    cities: Math.max(VO_IN + F(vo.cities.sec) + 22, CITIES_MIN),
+    real: VO_IN + F(vo.real.sec) + 16,
+    quiz: qMeans + F(vo.means.sec) + 18,
+    life: lAudio + 60,
+    habit: VO_IN + F(vo.habit.sec) + 18,
+    devices: VO_IN + F(vo.devices.sec) + 16,
     outro: 180,
   };
   let at = 0;
-  const out = {} as Record<keyof typeof d, {from: number; dur: number}>;
+  const shots = {} as Record<keyof typeof d, {from: number; dur: number}>;
   (Object.keys(d) as (keyof typeof d)[]).forEach((k) => {
-    out[k] = {from: at, dur: d[k]};
+    shots[k] = {from: at, dur: d[k]};
     at += d[k];
   });
-  return {...out, total: at};
-})();
+  return {...shots, total: at, qAudio, qTap, qMeans, lAudio};
+};
 
 const center: React.CSSProperties = {position: 'absolute', left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center'};
 
 // ───────── flags (SVG, since flag emoji don't render on Windows) ─────────
-const Flag: React.FC<{code: 'in' | 'ph' | 'gb' | 'us'; w: number}> = ({code, w}) => {
+const Flag: React.FC<{code: 'in' | 'ph' | 'gb' | 'us' | 'bd'; w: number}> = ({code, w}) => {
   const h = (w * 2) / 3;
   const box = (k: React.ReactNode) => (
     <svg width={w} height={h} viewBox="0 0 60 40" style={{display: 'block', borderRadius: w * 0.06, boxShadow: '0 4px 12px rgba(15,23,42,0.18)'}}>
       {k}
     </svg>
   );
+  if (code === 'bd')
+    return box(
+      <>
+        <rect width="60" height="40" fill="#006A4E" />
+        <circle cx="27" cy="20" r="12" fill="#F42A41" />
+      </>,
+    );
   if (code === 'in')
     return box(
       <>
@@ -113,6 +138,7 @@ const Flag: React.FC<{code: 'in' | 'ph' | 'gb' | 'us'; w: number}> = ({code, w})
 // ───────── 1. HOOK: moving to Saudi? ─────────
 const Hook: React.FC<{dur: number}> = ({dur}) => {
   const f = useCurrentFrame();
+  const t = useT();
   const {W, H, V, s} = useLayout();
   const out = exitOf(f, dur);
   const big = (V ? 124 : 118) * s;
@@ -161,8 +187,10 @@ const Hook: React.FC<{dur: number}> = ({dur}) => {
 const CITY_AT = [VO_IN + 26, VO_IN + 46, VO_IN + 68, VO_IN + 94];
 const SPEAK_AT = VO_IN + 140;
 const LEARN_AT = VO_IN + 178;
+const CITIES_MIN = LEARN_AT + 34 + 40; // keep the logo on screen even if the narration is short
 const Cities: React.FC<{dur: number}> = ({dur}) => {
   const f = useCurrentFrame();
+  const t = useT();
   const {W, H, V, s} = useLayout();
   const out = exitOf(f, dur);
   const cw = (V ? 440 : 380) * s;
@@ -215,7 +243,7 @@ const Cities: React.FC<{dur: number}> = ({dur}) => {
       })}
       <div style={{...center, top: textY}}>
         <div style={{display: 'flex', alignItems: 'center', gap: 18 * s, fontSize: (V ? 84 : 76) * s, fontWeight: 700, color: C.ink, transform: `scale(${Math.max(0, sp)})`, opacity: Math.min(1, sp * 2)}}>
-          <span style={{background: C.ink, color: '#fff', borderRadius: 18 * s, padding: `${0 * s}px ${18 * s}px`, fontSize: (V ? 52 : 46) * s, lineHeight: 1.5}}>EN</span>
+          <span style={{background: C.ink, color: '#fff', borderRadius: 18 * s, padding: `${0 * s}px ${18 * s}px`, fontSize: (V ? 52 : 46) * s, lineHeight: 1.5}}>{t.badge}</span>
           {t.speak}
         </div>
         <div style={{marginTop: 22 * s, display: 'flex', alignItems: 'center', gap: 26 * s, opacity: le, transform: `translateY(${(1 - le) * 30 * s}px)`, flexWrap: 'wrap', justifyContent: 'center'}}>
@@ -225,9 +253,10 @@ const Cities: React.FC<{dur: number}> = ({dur}) => {
           </span>
         </div>
         <div style={{marginTop: 26 * s, display: 'flex', alignItems: 'center', gap: 18 * s, transform: `scale(${Math.max(0, logo)})`, opacity: Math.min(1, logo * 2)}}>
-          <span style={{fontSize: (V ? 50 : 44) * s, fontWeight: 600, color: C.muted}}>with</span>
+          {t.withA ? <span style={{fontSize: (V ? 50 : 44) * s, fontWeight: 600, color: C.muted}}>{t.withA}</span> : null}
           <Logo size={(V ? 84 : 76) * s} wave={lin(f, LEARN_AT + 40, LEARN_AT + 60)} />
           <span style={{fontSize: (V ? 76 : 68) * s, fontWeight: 700, color: C.ink}}>Lahjio</span>
+          {t.withB ? <span style={{fontSize: (V ? 56 : 50) * s, fontWeight: 600, color: C.muted}}>{t.withB}</span> : null}
         </div>
       </div>
     </AbsoluteFill>
@@ -239,6 +268,7 @@ const BOOK_X = VO_IN + 34;
 const CHIP_AT = [VO_IN + 92, VO_IN + 120, VO_IN + 150];
 const Real: React.FC<{dur: number}> = ({dur}) => {
   const f = useCurrentFrame();
+  const t = useT();
   const {W, H, V, s} = useLayout();
   const out = exitOf(f, dur);
   const book = pop(f, 0, 20);
@@ -300,6 +330,7 @@ const LAPTOP_AT = 8;
 const PHONE_AT = 52;
 const Devices: React.FC<{dur: number}> = ({dur}) => {
   const f = useCurrentFrame();
+  const t = useT();
   const {W, H, V, s} = useLayout();
   const out = exitOf(f, dur);
   const title = pop(f, 0, 20);
@@ -351,7 +382,7 @@ const Devices: React.FC<{dur: number}> = ({dur}) => {
                 <ArText size={40 * s} color={C.green7}>
                   كم السعر
                 </ArText>
-                <div style={{fontSize: 20 * s, color: C.muted, fontWeight: 600}}>How much is it?</div>
+                <div style={{fontSize: 20 * s, color: C.muted, fontWeight: 600}}>{t.priceMeaning}</div>
               </div>
             </div>
           </div>
@@ -398,22 +429,28 @@ const Devices: React.FC<{dur: number}> = ({dur}) => {
 };
 
 // ───────── main ─────────
-const S = G_SHOTS;
-const VOICE: {from: number; src: string; sec: number; vol?: number}[] = [
-  {from: S.hook.from + VO_IN, ...G_VO.hook},
-  {from: S.cities.from + VO_IN, ...G_VO.cities},
-  {from: S.real.from + VO_IN, ...G_VO.real},
-  {from: S.quiz.from + VO_IN, ...G_VO.listen},
-  {from: S.quiz.from + Q_AUDIO, src: 'audio/kam-assir.mp3', sec: 1.0},
-  {from: S.quiz.from + Q_MEANS, ...G_VO.means},
-  {from: S.life.from + 20, ...G_VO.lessons},
-  {from: S.life.from + L_AUDIO, src: 'audio/kef-halak.mp3', sec: 1.2},
-  {from: S.habit.from + VO_IN, ...G_VO.habit},
-  {from: S.devices.from + VO_IN, ...G_VO.devices},
+type Voice = {from: number; src: string; sec: number; vol?: number};
+const voiceOf = (lang: GLang): Voice[] => {
+  const S = gTimeline(lang);
+  const vo = G_VO[lang];
+  return [
+  {from: S.hook.from + VO_IN, ...vo.hook},
+  {from: S.cities.from + VO_IN, ...vo.cities},
+  {from: S.real.from + VO_IN, ...vo.real},
+  {from: S.quiz.from + VO_IN, ...vo.listen},
+  {from: S.quiz.from + S.qAudio, src: 'audio/kam-assir.mp3', sec: 1.0},
+  {from: S.quiz.from + S.qMeans, ...vo.means},
+  {from: S.life.from + 20, ...vo.lessons},
+  {from: S.life.from + S.lAudio, src: 'audio/kef-halak.mp3', sec: 1.2},
+  {from: S.habit.from + VO_IN, ...vo.habit},
+  {from: S.devices.from + VO_IN, ...vo.devices},
   {from: S.outro.from + OUTRO_AUDIO_AT, src: 'audio/yalla.mp3', sec: 1.0},
-];
+  ];
+};
 
-const SFX: {from: number; src: string; volume: number; dur?: number}[] = [
+const sfxOf = (lang: GLang): {from: number; src: string; volume: number; dur?: number}[] => {
+  const S = gTimeline(lang);
+  return [
   {from: 2, src: 'sfx/whoosh-big.mp3', volume: 0.3},
   {from: S.hook.from + 14, src: 'sfx/pop.mp3', volume: 0.3},
   ...[0, 1, 2].map((i) => ({from: S.hook.from + VO_IN + 70 + i * 7, src: 'sfx/pop.mp3', volume: 0.22})),
@@ -424,12 +461,12 @@ const SFX: {from: number; src: string; volume: number; dur?: number}[] = [
   {from: S.real.from + BOOK_X, src: 'sfx/typewriter-hit-soft.mp3', volume: 0.4},
   ...CHIP_AT.map((a) => ({from: S.real.from + a, src: 'sfx/swoosh-quick.mp3', volume: 0.25})),
   {from: S.quiz.from + 2, src: 'sfx/whoosh-big.mp3', volume: 0.35},
-  {from: S.quiz.from + Q_AUDIO - 2, src: 'sfx/switch-tap.mp3', volume: 0.35},
-  {from: S.quiz.from + Q_TAP, src: 'sfx/switch-tap.mp3', volume: 0.5},
-  {from: S.quiz.from + Q_TAP + 4, src: 'sfx/shimmer-sparkle-sweep.mp3', volume: 0.3, dur: 40},
-  {from: S.quiz.from + Q_TAP + 8, src: 'sfx/pop.mp3', volume: 0.3},
+  {from: S.quiz.from + S.qAudio - 2, src: 'sfx/switch-tap.mp3', volume: 0.35},
+  {from: S.quiz.from + S.qTap, src: 'sfx/switch-tap.mp3', volume: 0.5},
+  {from: S.quiz.from + S.qTap + 4, src: 'sfx/shimmer-sparkle-sweep.mp3', volume: 0.3, dur: 40},
+  {from: S.quiz.from + S.qTap + 8, src: 'sfx/pop.mp3', volume: 0.3},
   ...[0, 1, 2, 3].map((i) => ({from: S.life.from + 22 + i * 8 + 2, src: i % 2 ? 'sfx/paper-move-quick.mp3' : 'sfx/paper-slide.mp3', volume: 0.4 - i * 0.05, dur: 20})),
-  {from: S.life.from + L_AUDIO - 2, src: 'sfx/switch-tap.mp3', volume: 0.35},
+  {from: S.life.from + S.lAudio - 2, src: 'sfx/switch-tap.mp3', volume: 0.35},
   {from: S.habit.from, src: 'sfx/swoosh-quick.mp3', volume: 0.3},
   {from: S.habit.from + 28, src: 'sfx/clock-knob-spin.mp3', volume: 0.3, dur: 50},
   {from: S.habit.from + 78, src: 'sfx/sparkle.mp3', volume: 0.28},
@@ -439,11 +476,12 @@ const SFX: {from: number; src: string; volume: number; dur?: number}[] = [
   {from: S.outro.from, src: 'sfx/riser-cine.mp3', volume: 0.35, dur: OUTRO_SLAM_AT},
   {from: S.outro.from + OUTRO_SLAM_AT, src: 'sfx/impact-cine-big.mp3', volume: 0.55, dur: 80},
   {from: S.outro.from + OUTRO_SLAM_AT + 6, src: 'sfx/shimmer-sparkle-sweep.mp3', volume: 0.28, dur: 45},
-];
+  ];
+};
 
-const duck = (f: number) => {
+const duck = (f: number, voice: Voice[]) => {
   let d = 1;
-  for (const v of VOICE) {
+  for (const v of voice) {
     const e = v.from + F(v.sec);
     const k = interpolate(f, [v.from - 8, v.from, e, e + 14], [1, 0.32, 0.32, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
     d = Math.min(d, k);
@@ -451,10 +489,15 @@ const duck = (f: number) => {
   return d;
 };
 
-export type GlobalProps = {bgm: boolean};
+export type GlobalProps = {bgm: boolean; lang?: GLang};
 
-export const Global: React.FC<GlobalProps> = ({bgm}) => {
+export const Global: React.FC<GlobalProps> = ({bgm, lang = 'en'}) => {
+  const S = gTimeline(lang);
+  const VOICE = voiceOf(lang);
+  const SFX = sfxOf(lang);
+  const t = lang === 'bn' ? GLOBAL_BN : GLOBAL;
   return (
+    <TCtx.Provider value={t}>
     <AbsoluteFill>
       <Background />
       <Sequence from={S.hook.from} durationInFrames={S.hook.dur}>
@@ -467,19 +510,19 @@ export const Global: React.FC<GlobalProps> = ({bgm}) => {
         <Real dur={S.real.dur} />
       </Sequence>
       <Sequence from={S.quiz.from} durationInFrames={S.quiz.dur}>
-        <Quiz t={t} lang="en" dur={S.quiz.dur} audioAt={Q_AUDIO} tapAt={Q_TAP} />
+        <Quiz t={t} lang={lang} dur={S.quiz.dur} audioAt={S.qAudio} tapAt={S.qTap} />
       </Sequence>
       <Sequence from={S.life.from} durationInFrames={S.life.dur}>
-        <Life t={t} lang="en" dur={S.life.dur} audioAt={L_AUDIO} />
+        <Life t={t} lang={lang} dur={S.life.dur} audioAt={S.lAudio} />
       </Sequence>
       <Sequence from={S.habit.from} durationInFrames={S.habit.dur}>
-        <Habit t={t} lang="en" dur={S.habit.dur} />
+        <Habit t={t} lang={lang} dur={S.habit.dur} />
       </Sequence>
       <Sequence from={S.devices.from} durationInFrames={S.devices.dur}>
         <Devices dur={S.devices.dur} />
       </Sequence>
       <Sequence from={S.outro.from} durationInFrames={S.outro.dur}>
-        <Outro t={t} lang="en" dur={S.outro.dur} />
+        <Outro t={t} lang={lang} dur={S.outro.dur} />
       </Sequence>
 
       {VOICE.map((v, i) => (
@@ -496,9 +539,10 @@ export const Global: React.FC<GlobalProps> = ({bgm}) => {
         <Audio
           src={staticFile('bgm/house-vibez.mp3')}
           loop
-          volume={(f) => 0.3 * duck(f) * interpolate(f, [0, 12, S.total - 45, S.total], [0, 1, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}
+          volume={(f) => 0.3 * duck(f, VOICE) * interpolate(f, [0, 12, S.total - 45, S.total], [0, 1, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}
         />
       ) : null}
     </AbsoluteFill>
+    </TCtx.Provider>
   );
 };

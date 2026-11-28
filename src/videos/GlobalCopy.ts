@@ -1,13 +1,17 @@
-import {Copy} from '../copy';
+import {COPY, Copy} from '../copy';
 
 // "Learn Saudi Arabic in English" — for English speakers anywhere (India, Philippines, UK, USA, ...)
 // Reused scenes (Quiz, Life, Habit, Outro) read these fields.
-export const GLOBAL: Copy & {
+export type GlobalCopy = Copy & {
   hookA: string;
   hookB: string;
   hookC: string;
   places: string[];
-  cities: {city: string; country: string; flag: 'in' | 'ph' | 'gb' | 'us'}[];
+  cities: {city: string; country: string; flag: 'in' | 'ph' | 'gb' | 'us' | 'bd'}[];
+  badge: string;
+  withA: string;
+  withB: string;
+  priceMeaning: string;
   speak: string;
   learnA: string;
   learnB: string;
@@ -20,7 +24,9 @@ export const GLOBAL: Copy & {
   devApp: string;
   heroA: string;
   heroB: string;
-} = {
+};
+
+export const GLOBAL: GlobalCopy = {
   // new scenes
   hookA: 'Moving to',
   hookB: 'Saudi Arabia?',
@@ -32,6 +38,10 @@ export const GLOBAL: Copy & {
     {city: 'Manchester', country: 'UK', flag: 'gb'},
     {city: 'Miami', country: 'USA', flag: 'us'},
   ],
+  badge: 'EN',
+  withA: 'with',
+  withB: '',
+  priceMeaning: 'How much is it?',
   speak: 'Speak English?',
   learnA: 'Learn ',
   learnB: 'Saudi Arabic',
@@ -81,4 +91,39 @@ export const GLOBAL: Copy & {
   outroTitle: 'Start speaking Arabic today',
   cta: 'Start for free',
   free: 'Free to start · Web & phone',
+};
+
+// Bangla version: same video, re-targeted at Bengali speakers (Bangladesh + West Bengal).
+// Narrator "Shadhin Bangla", clips public/audio/bn/g{1..8}-*.mp3. Reused scenes take COPY.bn text.
+export const GLOBAL_BN: GlobalCopy = {
+  ...COPY.bn,
+  hookA: 'কাজের জন্য যাচ্ছো',
+  hookB: 'সৌদি আরব?',
+  hookC: 'নাকি এখন সেখানেই থাকো?',
+  places: ['রিয়াদ', 'জেদ্দা', 'দাম্মাম'],
+  cities: [
+    {city: 'ঢাকা', country: 'বাংলাদেশ', flag: 'bd'},
+    {city: 'চট্টগ্রাম', country: 'বাংলাদেশ', flag: 'bd'},
+    {city: 'সিলেট', country: 'বাংলাদেশ', flag: 'bd'},
+    {city: 'কলকাতা', country: 'ভারত', flag: 'in'},
+  ],
+  badge: 'বাং',
+  withA: '',
+  withB: 'দিয়ে',
+  priceMeaning: 'দাম কত?',
+  speak: 'বাংলা জানো?',
+  learnA: 'শেখো ',
+  learnB: 'সৌদি আরবি',
+  textbook: 'বইয়ের আরবি',
+  realA: 'প্রতিদিন যে আরবি শোনো',
+  realB: 'সেই আসল আরবি',
+  devA: 'ওয়েবসাইট অথবা ',
+  devB: 'ফোন অ্যাপ',
+  devWeb: 'lahjio.com',
+  devApp: 'হোম স্ক্রিনে যোগ করো',
+  heroA: 'আত্মবিশ্বাসের সাথে বলো',
+  heroB: 'সৌদি আরবি',
+  cap2Title: 'সব কিছু',
+  cap2Sub: 'সহজ বাংলায়',
+  free: 'শুরু করা ফ্রি · ওয়েব ও ফোনে',
 };

@@ -108,7 +108,7 @@ export const Dialogue: React.FC<DialogueProps> = ({id, lang, bgm}) => {
 };
 
 // ───────────── avatars (flat SVG) ─────────────
-const Person: React.FC<{kind: 'saudi' | 'shop'; size: number; talk: number; f: number; uid: string}> = ({kind, size, talk, f, uid}) => {
+export const Person: React.FC<{kind: 'saudi' | 'shop'; size: number; talk: number; f: number; uid: string}> = ({kind, size, talk, f, uid}) => {
   const mouth = 2 + 7 * talk * (0.45 + 0.55 * Math.abs(Math.sin(f * 0.85)));
   const pid = `gh-${uid}`;
   const cid = `cl-${uid}`;
@@ -163,7 +163,7 @@ const Person: React.FC<{kind: 'saudi' | 'shop'; size: number; talk: number; f: n
   );
 };
 
-const Mic: React.FC<{size: number; color: string}> = ({size, color}) => (
+export const Mic: React.FC<{size: number; color: string}> = ({size, color}) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
     <rect x="9" y="2" width="6" height="12" rx="3" fill={color} />
     <path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8" />

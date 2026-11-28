@@ -54,11 +54,15 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
 - The app is not on Play yet; when it launches, make a "now available" version (change badge text to "GET IT ON").
 
 ## "Learn Saudi Arabic in English" (made 2026-11-26)
-- For English speakers anywhere (Philippines/India/UK/USA). **English only** (user asked), so no BN version. lahjio.com
-  has an EN/हि/اُر/বাং language switch; lessons for English speakers exist.
+- For English speakers anywhere (Philippines/India/UK/USA). lahjio.com has an EN/हि/اُر/বাং language switch; lessons for English speakers exist.
+- **Bangla version added 2026-11-28 (user asked).** Re-targeted, not a literal translation: "বাংলা জানো?" with Dhaka/Chattogram/Sylhet/Kolkata
+  cards (SVG `bd` flag added), "সহজ বাংলায়". Text `GLOBAL_BN` in `GlobalCopy.ts` (spreads `COPY.bn` for the reused scenes); the component takes
+  `lang` and reads text through a context (`useT`). Narrator Shadhin, clips `public/audio/bn/g1..g8-*.mp3` (lengths in `G_VO.bn`),
+  ElevenLabs flow "Lahjio – Global video Bangla narration" `2iDN09azO2z5W1rL78oH`. Compositions `Global-BN-{9x16,16x9}`;
+  render `node scripts/render-global.mjs --lang=BN` → `out/global-bangla/` (+ `POSTING.md`).
 - Code: `src/videos/Global.tsx` (+ text in `src/videos/GlobalCopy.ts`). Scenes: hook (plane, Riyadh/Jeddah/Dammam) →
   city cards with SVG flags (flag emoji don't render on Windows) → "not textbook Arabic" → reused `Quiz` → `Life` →
-  `Habit` → website + phone ("Add to Home screen", it is a web app) → reused `Outro`. Timing is computed from clip lengths (`G_VO`).
+  `Habit` → website + phone ("Add to Home screen", it is a web app) → reused `Outro`. Timing is computed from clip lengths (`gTimeline(lang)`).
 - `Quiz` and `Life` in `scenes.tsx` now take optional `audioAt` / `tapAt` props (defaults keep promo #1 unchanged).
 - Narrator: ElevenLabs **"Sarah – Warm & Conversational"** (American female) `voice_id: h1Q2hoJVsQ8dXy9QYQN5`, eleven_v4,
   clips `public/audio/global/l1..l8-*.mp3` (~50–130 credits each).
@@ -84,6 +88,23 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
 - #1 `shop-water` (at the shop, 4 lines: السلام عليكم، عندك موية؟ / وعليكم السلام، إيه موجود / بكم؟ / بريالين), ~36 s.
   4 lines is the most that fits: 3 rounds make it ~36 s, and in 16:9 the 4th bubble just fits (chat `k` 0.84).
 - To add #2: generate clips (1 take each), measure with ffprobe, add a `DIALOGS` entry and a `SLUGS` entry in `render-dialog.mjs`.
+
+## English narrator: Sarah only (user asked 2026-11-28)
+- **All new English narration uses one clear native English voice: "Sarah – Warm & Conversational"** `h1Q2hoJVsQ8dXy9QYQN5`, eleven_v4.
+  Don't use Leo (South Asian accent) for new videos. Sarah versions of the shared lines: `public/audio/en/sarah-your-turn.mp3` (1.68 s,
+  "Your turn. Say it!") and `sarah-outro.mp3` (5.60 s, "Follow Lahjio for new Saudi Arabic every day. Start free at lahjio dot com.").
+- Older videos (daily days 1–9 EN, Mini dialogue #1 EN hook, Coming soon EN) still use Leo until they're re-voiced.
+
+## "Funny mistakes" skits (started 2026-11-28)
+- Skit where a wrong word causes confusion, then the fix: hook → skit with the mistake (red bubble, the Saudi looks around with "?" marks)
+  → "OOPS!" stamp + "What went wrong?" card (wrong vs right rows timed to the narration, letter tips) → skit done right (green check)
+  → your turn card → reused Daily `Outro`.
+- Code: `src/videos/skits.ts` (data + UI text `SUI`, incl. narrator clip paths per language) and `src/videos/Skit.tsx` (timing `skitTimeline`,
+  layout anchors per format in `useLay`; reuses `Person`/`Mic` from `Dialogue.tsx`). Compositions `Skit-D{NN}-{BN,EN}-{9x16,4x5,16x9}`.
+- Voices: "you" = Fahad `YCN2uLvOoKxKJtRmeub3`, Saudi = Abdulrahman (v4 tags `[confused]`, `[cheerful]` work). Clips `public/audio/skit/s{N}-*.mp3`;
+  narration `public/audio/{bn,en}/skit{N}-hook.mp3`, `skit{N}-explain.mp3`.
+- QA: `node scripts/qa-skit.mjs <id> [scale] [frames] [filter]` → `out/qa/skit/`. Render: `node scripts/render-skit.mjs [ids] [--lang=EN]` → `out/skits/skit-NN-<slug>/` (+ `out/skits/POSTING.md`).
+- #1 `yabgha-abgha`: يبغى موية ("he wants water") → مين يبغى؟ وينه؟ → explanation → أبغى موية → أبشر!  BN 28.5 s, EN 32.5 s.
 
 ## ElevenLabs
 - Voice: **Abdulrahman - Warm, Clear, Commercial** (native Saudi male) `voice_id: KfYUTAF49N2CPU3iKuMi`, model `eleven_v4`
@@ -133,7 +154,7 @@ composition ids. Reuse `Background`, `Logo`, the Outro CTA and the brand tokens 
 - **Two accounts:** Bangla = **@lahjiobn**, English = **@lahjioapp** (user corrected this; don't swap them). Same designs, text per language.
 - Remotion stills in `src/insta/` with their own entry `src/insta/root.tsx` (not in `src/index.ts`). `kit.tsx` = frame/header/footer, icons, cards,
   language context (`useT()('বাংলা', 'English')`, `HANDLE`, `useNum` for Bengali digits); `launch.tsx` = 9-post launch grid; `week1.tsx` = week-1 posts (Day 1 carousel);
-  `week2.tsx` = days 8+ (folder `04-week-2/`, same topics as the daily Reels, keep alternating green/light); `extras.tsx` = profile pic, highlight covers, grid previews (`after-day-9` = all 18 posts). No language toggle is shown on the images (user: "no need to add language switch").
+  `week2.tsx` = days 8+ (folder `04-week-2/`, same topics as the daily Reels, keep alternating green/light); `extras.tsx` = profile pic, highlight covers, grid previews (`after-day-9` = all 18 posts). `more.tsx` + `tpl.tsx` = 41-post "more posts" series (folder `05-more-posts/NN-slug`, odd = green, even = light, no dates on images; data-driven layouts in `tpl.tsx`) and `06-milestones/`; order + captions in `MORE-POSTS-PLAN.md`. No language toggle is shown on the images (user: "no need to add language switch").
 - Render: `node scripts/render-insta.mjs [filter] [scale]` → `out/instagram/{bangla,english}/<folder>/<name>.png` (still id `ig--<bangla|english>--folder--name`).
   Captions/bio/order: `out/instagram/{bangla,english}/POSTING-PLAN.md`.
 - Google Drive: "Lahjio Instagram – Bangla (@lahjiobn)" https://drive.google.com/drive/folders/1KNUTXeaUbqtd_rZjwRh7BtKKyjqTBj9w and

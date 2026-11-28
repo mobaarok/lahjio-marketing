@@ -6,6 +6,7 @@ import {registerRoot, Still} from 'remotion';
 import {LAUNCH} from './launch';
 import {WEEK1} from './week1';
 import {WEEK2} from './week2';
+import {MILESTONES, MORE} from './more';
 import {GridDay9, GridLaunch, GridWeek, HL, Profile} from './extras';
 import {Lang, LangProvider} from './kit';
 
@@ -23,6 +24,8 @@ const stillsFor = (lang: Lang): S[] => {
     {id: id('03-grid-preview/after-week-1'), C: GridWeek, w: 1080, h: 2740},
     {id: id('03-grid-preview/after-day-9'), C: GridDay9, w: 1080, h: 3720},
     ...WEEK2.map((p) => ({id: id('04-week-2/' + p.file), C: p.C, w: 1080, h: 1350})),
+    ...MORE.map((p) => ({id: id('05-more-posts/' + p.file), C: p.C, w: 1080, h: 1350})),
+    ...MILESTONES.map((p) => ({id: id('06-milestones/' + p.file), C: p.C, w: 1080, h: 1350})),
   ];
   return list.map((s) => {
     const Inner = s.C;

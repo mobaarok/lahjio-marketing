@@ -70,6 +70,21 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
 - **From a cloud session the Drive upload limit is ~3.1 MB per call.** Shrink with two-pass x264 to ~2.85 MB (AAC 96k, bitrate from duration) into
   `out/drive-small/` before uploading. Done for day 8 and the fixed English promo (2026-11-26).
 
+## "Mini dialogue" series (started 2026-11-28)
+- A real-life chat between a Saudi ("them") and the viewer ("you", the Bangladeshi worker), played 3 times:
+  round 1 just listen (Arabic only) → round 2 with transliteration + meaning → round 3 "your turn": the "you" lines are
+  silent pauses with a mic badge and a countdown bar (the viewer speaks). Hook question → rounds → reused Daily `Outro`.
+- Code: `src/videos/dialogs.ts` (data: lines, clip lengths, UI text `DUI`) and `src/videos/Dialogue.tsx` (timing computed
+  from clip lengths in `dlgTimeline`; flat SVG avatars `Person` kinds `saudi` (ghutra) / `shop` (green cap + polo); layout anchors per format in `L`).
+- Voices: "them" = Abdulrahman `KfYUTAF49N2CPU3iKuMi`; "you" = **"Fahad - Saudi Professional & Warm"** `YCN2uLvOoKxKJtRmeub3` (a second Saudi
+  voice so the two speakers sound different). Clips `public/audio/dialog/d{N}-l{i}.mp3`. Hook narration `public/audio/{bn,en}/dlg{N}-hook.mp3`
+  (Shadhin / Leo); round 3 reuses `your-turn.mp3`, outro reuses `outro.mp3`.
+- Compositions `Dialog-D{NN}-{BN,EN}-{9x16,4x5,16x9}`. QA: `node scripts/qa-dialog.mjs <id> [scale] [fractions|frames] [filter]` → `out/qa/dialog/`.
+  Render: `node scripts/render-dialog.mjs [ids] [--lang=EN]` → `out/dialogs/dialog-NN-<slug>/{bangla,english}/` (+ `out/dialogs/POSTING.md`).
+- #1 `shop-water` (at the shop, 4 lines: السلام عليكم، عندك موية؟ / وعليكم السلام، إيه موجود / بكم؟ / بريالين), ~36 s.
+  4 lines is the most that fits: 3 rounds make it ~36 s, and in 16:9 the 4th bubble just fits (chat `k` 0.84).
+- To add #2: generate clips (1 take each), measure with ffprobe, add a `DIALOGS` entry and a `SLUGS` entry in `render-dialog.mjs`.
+
 ## ElevenLabs
 - Voice: **Abdulrahman - Warm, Clear, Commercial** (native Saudi male) `voice_id: KfYUTAF49N2CPU3iKuMi`, model `eleven_v4`
 - Flow: "Lahjio promo – Saudi word audio" `HNNLSVvbW8DjC6zBnO86` (add new clips to this flow)

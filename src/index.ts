@@ -5,6 +5,8 @@ import {Daily, DailyProps, timeline} from './daily/Daily';
 import {PHRASES} from './daily/phrases';
 import {ComingSoon, ComingSoonProps, csTimeline} from './videos/ComingSoon';
 import {Global, GlobalProps, G_SHOTS} from './videos/Global';
+import {Dialogue, DialogueProps, dlgTimeline} from './videos/Dialogue';
+import {DIALOGS} from './videos/dialogs';
 
 const FORMATS = [
   {id: 'Lahjio-BN-9x16', lang: 'bn', w: 1080, h: 1920},
@@ -71,6 +73,18 @@ const Root: React.FC = () =>
         fps: 30, width: z.w, height: z.h, defaultProps: {bgm: true},
       });
     }),
+    // "Mini dialogue" series: Dialog-D01-BN-9x16, ...
+    DIALOGS.flatMap((d) =>
+      (['bn', 'en'] as const).flatMap((lang) =>
+        DAILY_SIZES.map((z) => {
+          const id = `Dialog-D${String(d.id).padStart(2, '0')}-${lang.toUpperCase()}-${z.fmt}`;
+          return React.createElement(Composition<any, DialogueProps>, {
+            key: id, id, component: Dialogue, durationInFrames: dlgTimeline(d, lang).total,
+            fps: 30, width: z.w, height: z.h, defaultProps: {id: d.id, lang, bgm: true},
+          });
+        }),
+      ),
+    ),
   );
 
 registerRoot(Root);

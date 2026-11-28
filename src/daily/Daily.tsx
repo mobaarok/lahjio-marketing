@@ -28,7 +28,7 @@ export const timeline = (p: Phrase, lang: Lang) => {
 
 export type DailyProps = {day: number; lang: Lang; bgm: boolean};
 
-const useL = () => {
+export const useL = () => {
   const {width: W, height: H} = useVideoConfig();
   const r = W / H;
   const mode = r < 0.7 ? 'tall' : r < 1.2 ? 'feed' : 'wide';
@@ -379,7 +379,7 @@ const Stage: React.FC<{p: Phrase; lang: Lang; T: TL}> = ({p, lang, T}) => {
   );
 };
 
-const Outro: React.FC<{lang: Lang; local: number}> = ({lang, local: f}) => {
+export const Outro: React.FC<{lang: Lang; local: number}> = ({lang, local: f}) => {
   const {mode, s} = useL();
   const u = UI[lang];
   const lg = pop(f, 6, 20);

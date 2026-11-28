@@ -53,6 +53,14 @@ The daily phrase Reels (`out/daily/`) can still go out each day at another time.
 | 6 | `day-6-greetings-replies.png` | Single | কেউ বললে… তুমি কী বলবে? 💬 সালাম, খোঁজখবর, ধন্যবাদ আর يعطيك العافية, সৌদিতে সবচেয়ে বেশি শোনা ধন্যবাদ। উত্তরগুলো শিখে নাও! |
 | 7 | `day-7-week-recap.png` | Single | এই সপ্তাহের ৭টি সৌদি বাক্য ✅ কয়টা মনে আছে? সেভ করো, আবার দেখো। প্রতিদিন নতুন বাক্যের জন্য ফলো করো! ফ্রি শিখতে 👉 lahjio.com |
 
+## Step 3 · Week 2 starts: days 8–9 (folder `04-week-2/`)
+Same topics as the day 8 and day 9 daily Reels. After day 9 the grid has 18 posts = 6 full rows (see `03-grid-preview/after-day-9.png`).
+
+| Day | File | Type | Caption |
+|---|---|---|---|
+| 8 | `day-8-no-problem.png` | Single | কেউ সরি বললে আরবিতে কী বলবে? 🙂 ما في مشكلة (মা ফি মুশকিলা) = কোনো সমস্যা নেই। সৌদিরা আরও বলে عادي, ولا يهمك আর أبشر। কোনটা তুমি আগে শুনেছ? কমেন্টে লেখো 👇 |
+| 9 | `day-9-whats-your-name.png` | Single | নতুন কারো সাথে পরিচয়? 👋 وش اسمك؟ (ওয়েশ ইসমাক) = তোমার নাম কী? উত্তরে বলো اسمي + তোমার নাম। কমেন্টে আরবিতে তোমার নাম লেখো! 👇 |
+
 Short English line you can add to any caption (for non-Bengali followers):
 "Learn Saudi Arabic the easy way, free at lahjio.com"
 

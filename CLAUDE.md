@@ -118,7 +118,7 @@ composition ids. Reuse `Background`, `Logo`, the Outro CTA and the brand tokens 
 - **Two accounts:** Bangla = **@lahjiobn**, English = **@lahjioapp** (user corrected this; don't swap them). Same designs, text per language.
 - Remotion stills in `src/insta/` with their own entry `src/insta/root.tsx` (not in `src/index.ts`). `kit.tsx` = frame/header/footer, icons, cards,
   language context (`useT()('বাংলা', 'English')`, `HANDLE`, `useNum` for Bengali digits); `launch.tsx` = 9-post launch grid; `week1.tsx` = week-1 posts (Day 1 carousel);
-  `extras.tsx` = profile pic, highlight covers, grid previews. No language toggle is shown on the images (user: "no need to add language switch").
+  `week2.tsx` = days 8+ (folder `04-week-2/`, same topics as the daily Reels, keep alternating green/light); `extras.tsx` = profile pic, highlight covers, grid previews (`after-day-9` = all 18 posts). No language toggle is shown on the images (user: "no need to add language switch").
 - Render: `node scripts/render-insta.mjs [filter] [scale]` → `out/instagram/{bangla,english}/<folder>/<name>.png` (still id `ig--<bangla|english>--folder--name`).
   Captions/bio/order: `out/instagram/{bangla,english}/POSTING-PLAN.md`.
 - Google Drive: "Lahjio Instagram – Bangla (@lahjiobn)" https://drive.google.com/drive/folders/1KNUTXeaUbqtd_rZjwRh7BtKKyjqTBj9w and

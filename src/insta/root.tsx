@@ -5,7 +5,8 @@ import React from 'react';
 import {registerRoot, Still} from 'remotion';
 import {LAUNCH} from './launch';
 import {WEEK1} from './week1';
-import {GridLaunch, GridWeek, HL, Profile} from './extras';
+import {WEEK2} from './week2';
+import {GridDay9, GridLaunch, GridWeek, HL, Profile} from './extras';
 import {Lang, LangProvider} from './kit';
 
 type S = {id: string; C: React.FC; w: number; h: number};
@@ -20,6 +21,8 @@ const stillsFor = (lang: Lang): S[] => {
     ...WEEK1.map((p) => ({id: id('02-week-1/' + p.file), C: p.C, w: 1080, h: 1350})),
     {id: id('03-grid-preview/after-launch'), C: GridLaunch, w: 1080, h: 2250},
     {id: id('03-grid-preview/after-week-1'), C: GridWeek, w: 1080, h: 2740},
+    {id: id('03-grid-preview/after-day-9'), C: GridDay9, w: 1080, h: 3720},
+    ...WEEK2.map((p) => ({id: id('04-week-2/' + p.file), C: p.C, w: 1080, h: 1350})),
   ];
   return list.map((s) => {
     const Inner = s.C;

@@ -53,6 +53,14 @@ so the checkerboard stays clean.
 | 6 | `day-6-greetings-replies.png` | Single | They say… what do you say? 💬 Greetings, thank you, and يعطيك العافية, the "thank you" you hear most in Saudi. Learn the replies! |
 | 7 | `day-7-week-recap.png` | Single | This week's 7 Saudi phrases ✅ How many do you remember? Save & review. Follow for a new phrase every day! Learn free 👉 lahjio.com |
 
+## Step 3 · Week 2 starts: days 8–9 (folder `04-week-2/`)
+Same topics as the day 8 and day 9 daily Reels. After day 9 the grid has 18 posts = 6 full rows (see `03-grid-preview/after-day-9.png`).
+
+| Day | File | Type | Caption |
+|---|---|---|---|
+| 8 | `day-8-no-problem.png` | Single | Someone says sorry? Here's what to say 🙂 ما في مشكلة (ma fi mushkila) = No problem. Saudis also say عادي, ولا يهمك and أبشر. Which one have you heard? 👇 |
+| 9 | `day-9-whats-your-name.png` | Single | Meeting someone new? 👋 وش اسمك؟ (wesh ismak) = What's your name? Answer with اسمي + your name. Write your name in Arabic in the comments! 👇 |
+
 ## Tips
 - Reply to every comment in the first hour; it pushes the post to more people.
 - Share each new post to your story with a poll or quiz sticker (e.g. the Day 3 quiz).

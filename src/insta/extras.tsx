@@ -6,6 +6,7 @@ import {Logo} from '../parts';
 import {GREEN_BG, HANDLE, Icon, useLang, useT} from './kit';
 import {LAUNCH} from './launch';
 import {WEEK1} from './week1';
+import {WEEK2} from './week2';
 
 // Profile picture 1080 x 1080. Instagram crops it to a circle, so the mark sits well inside.
 export const Profile: React.FC = () => (
@@ -110,3 +111,6 @@ const launchNewestFirst = [...LAUNCH].reverse().map((p) => p.C);
 const weekCovers = WEEK1.filter((p) => !p.file.includes('/slide-') || p.file.endsWith('slide-1')).map((p) => p.C);
 export const GridLaunch: React.FC = () => <GridPreview posts={launchNewestFirst} />;
 export const GridWeek: React.FC = () => <GridPreview posts={[...weekCovers].reverse().concat(launchNewestFirst).slice(0, 12)} />;
+// all 18 posts (launch + days 1–9) = 6 full rows
+const day9NewestFirst = [...WEEK2].reverse().map((p) => p.C);
+export const GridDay9: React.FC = () => <GridPreview posts={[...day9NewestFirst, ...[...weekCovers].reverse(), ...launchNewestFirst]} />;

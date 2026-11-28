@@ -69,8 +69,11 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
 - Compositions `Global-EN-{9x16,16x9}` (4:5 dropped: the reused Life cards overlap the title at 1350px).
   Render: `node scripts/render-global.mjs` → `out/global-english/` (+ `POSTING.md`).
 - Google Drive: folder "Lahjio – Learn Saudi Arabic in English" (https://drive.google.com/drive/folders/11AqxshuG738LiJtBhB35_wEU2nZdgGL-).
-  **The Drive connector refuses files over 10 MB.** The ~16 MB renders were re-encoded for Drive into `out/global-english/drive/`
-  (`libx264 -preset slow -crf 25 -maxrate 1.15M -bufsize 2.3M`, AAC 128k → ~6 MB, still sharp). Full-quality originals stay local.
+  **The Drive connector refuses files over ~7 MB** (the 10 MB request limit includes base64 overhead; 7.0 MB passed, 9.0 MB failed on 2026-11-28).
+  Large renders get a Drive copy in a `drive/` subfolder next to the original: two-pass x264 at a bitrate from the duration aiming at ~6.4 MB
+  (AAC 128k), or `-crf 25 -maxrate 1.15M -bufsize 2.3M` for ~6 MB. Full-quality originals stay local. Done for global-english, global-bangla,
+  dialog #1 and skit #1 (9:16 and 16:9).
+- The full list of what's made, what's on Drive and what's pending is in `WORK-LOG.md` (keep it updated after each task).
 - **From a cloud session the Drive upload limit is ~3.1 MB per call.** Shrink with two-pass x264 to ~2.85 MB (AAC 96k, bitrate from duration) into
   `out/drive-small/` before uploading. Done for day 8 and the fixed English promo (2026-11-26).
 
@@ -88,6 +91,7 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
 - #1 `shop-water` (at the shop, 4 lines: السلام عليكم، عندك موية؟ / وعليكم السلام، إيه موجود / بكم؟ / بريالين), ~36 s.
   4 lines is the most that fits: 3 rounds make it ~36 s, and in 16:9 the 4th bubble just fits (chat `k` 0.84).
 - To add #2: generate clips (1 take each), measure with ffprobe, add a `DIALOGS` entry and a `SLUGS` entry in `render-dialog.mjs`.
+- Google Drive: "Lahjio Mini Dialogues" https://drive.google.com/drive/folders/1kcQHxMyclZp1tl_tqNzgqJ3HhPDFwiks (one subfolder per dialog + language, `POSTING.md`).
 
 ## English narrator: Sarah only (user asked 2026-11-28)
 - **All new English narration uses one clear native English voice: "Sarah – Warm & Conversational"** `h1Q2hoJVsQ8dXy9QYQN5`, eleven_v4.
@@ -105,6 +109,8 @@ The user will keep asking for new videos (e.g. one per feature). Reuse this proj
   narration `public/audio/{bn,en}/skit{N}-hook.mp3`, `skit{N}-explain.mp3`.
 - QA: `node scripts/qa-skit.mjs <id> [scale] [frames] [filter]` → `out/qa/skit/`. Render: `node scripts/render-skit.mjs [ids] [--lang=EN]` → `out/skits/skit-NN-<slug>/` (+ `out/skits/POSTING.md`).
 - #1 `yabgha-abgha`: يبغى موية ("he wants water") → مين يبغى؟ وينه؟ → explanation → أبغى موية → أبشر!  BN 28.5 s, EN 32.5 s.
+- Google Drive: "Lahjio Funny Skits" https://drive.google.com/drive/folders/1BhqZtX5Da647F8g83RYTpVOYpaMLqbeR (one subfolder per skit + language, `POSTING.md`).
+- Bangla global video (`out/global-bangla/`) is on Drive in "Lahjio – Learn Saudi Arabic in Bangla" https://drive.google.com/drive/folders/1J3SkcBSZ4ZgIy2X6pAe7tDKGLA_ib4mL.
 
 ## ElevenLabs
 - Voice: **Abdulrahman - Warm, Clear, Commercial** (native Saudi male) `voice_id: KfYUTAF49N2CPU3iKuMi`, model `eleven_v4`
